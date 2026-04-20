@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #09030b;
+  --color-brand-surface: #170d1e;
+  --color-brand-primary: #7a3cf5;
+  --color-brand-secondary: #ebd356;
+  --color-brand-teal: #1cdbba;
+  
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Custom Gradients and Animations */
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #a3a3a3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-btn {
+  box-shadow: 0 0 20px rgba(122, 60, 245, 0.4);
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 40px rgba(122, 60, 245, 0.15);
+  border-color: rgba(122, 60, 245, 0.3);
+}
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 2rem;
+}
+
+.marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: 2rem;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes slideY {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(-50%); }
+}
+
+.hover\:paused:hover {
+  animation-play-state: paused;
+}
+

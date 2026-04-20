@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Defensively guard window.fetch to avoid "TypeError: Cannot set property fetch..."
+      (function() {
+        try {
+          const descriptor = Object.getOwnPropertyDescriptor(window, 'fetch');
+          
+          // If no descriptor, or if it is configurable, we can potentially redefine it
+          // Otherwise, leave it alone as the browser has it locked
+          if (!descriptor || descriptor.configurable) {
+            const original = window.fetch;
+            Object.defineProperty(window, 'fetch', {
+              get: function() { return original; },
+              set: function() { /* no-op */ },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (e) {
+          // Ignore errors
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
